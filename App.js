@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import { Card } from 'react-native-elements';
+import { StyleSheet, View, Text } from 'react-native';
+import { Card, Button } from 'react-native-elements';
 import Deck from './src/Deck';
 
 const DATA = [
@@ -18,10 +18,35 @@ export default class App extends React.Component {
     renderCard(item) {
         return (
             <Card
-                title={item.text}
+                title={ item.text }
                 image={{ uri: item.uri }}
-                key={item.id}
+                key={ item.id }
             >
+                <Text style={{marginBottom: 10}}>
+                    The idea with React Native Elements is more about component structure than actual design.
+                </Text>
+                <Button
+                    large
+                    icon={{ name: 'code' }}
+                    backgroundColor='#660066'
+                    title='View Now!'
+                />
+            </Card>
+        );
+    }
+
+    renderNoMoreCards() {
+        return (
+            <Card
+                title='All Done!'
+            >
+                <Text>No more cards</Text>
+                <Button
+                    large
+                    icon={{ name: 'code' }}
+                    backgroundColor='#639936'
+                    title='Get More!'
+                />
             </Card>
         );
     }
@@ -32,6 +57,7 @@ export default class App extends React.Component {
                 <Deck
                     data={DATA}
                     renderCard={this.renderCard}
+                    renderNoMoreCards={this.renderNoMoreCards}
                 />
             </View>
         );
